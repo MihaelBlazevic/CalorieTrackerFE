@@ -3,6 +3,14 @@
       <h2>Register</h2>
       <form @submit.prevent="register">
         <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="name" id="name" v-model="name" required>
+        </div>
+        <div class="form-group">
+          <label for="surname">Surname:</label>
+          <input type="surname" id="surname" v-model="surname" required>
+        </div>
+        <div class="form-group">
           <label for="email">Email:</label>
           <input type="email" id="email" v-model="email" required>
         </div>
@@ -21,6 +29,8 @@
   name: 'Register',
   data() {
     return {
+      name: '',
+      surname:'',
       email: '',
       password: '',
     };
@@ -29,6 +39,8 @@
     async register() {
       try {
         const response = await AuthenticationService.register({
+          name: this.name,
+          surname: this.surname,
           email: this.email,
           password: this.password,
         });
