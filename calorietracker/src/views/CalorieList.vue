@@ -9,9 +9,6 @@
         <ul>
           <li v-for="(item, index) in items" :key="index">{{ item }}</li>
         </ul>
-        <div class="save-button-container">
-          <button @click="saveData" class="save-button">Save</button>
-        </div>
       </div>
       <div class="square right-square">
         <h2>Ingredient List</h2>
@@ -22,6 +19,9 @@
         </ul>
       </div>
     </div>
+    <div class="save-button-container">
+      <button @click="saveData" class="save-button">Save</button>
+    </div>
   </div>
 </template>
 
@@ -30,10 +30,7 @@
 </script>
 
 <style>
-body,
-html {
-  height: 100%;
-  margin: 0;
+body {
   font-family: Arial, sans-serif;
 }
 
@@ -41,9 +38,7 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 0;
-  width: 100%;
-  height: 100%;
+  padding: 40px;
   background-color: #f7f7f7;
 }
 
@@ -54,7 +49,6 @@ html {
   margin-top: 40px;
   width: 100%;
   max-width: 1200px;
-  flex-grow: 1;
 }
 
 .square {
@@ -63,7 +57,6 @@ html {
   border-radius: 8px;
   padding: 30px;
   margin: 0 10px;
-  position: relative;
 }
 
 .left-square {
@@ -105,10 +98,11 @@ html {
 }
 
 .save-button-container {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  width: 100%;
 }
 
 h2 {
