@@ -1,19 +1,23 @@
 <template>
-    <div class="register-form">
-      <h2>Login</h2>
+  <div class="login-container">
+    <div class="register-form shadow-lg p-4 rounded">
+      <h2 class="text-center mb-4">Login</h2>
       <form @submit.prevent="login">
-        <div class="form-group">
+        <div class="form-group mb-3">
           <label for="email">Email:</label>
-          <input type="email" id="email" v-model="email" required>
+          <input type="email" id="email" v-model="email" class="form-control" required>
         </div>
-        <div class="form-group">
+        <div class="form-group mb-3">
           <label for="password">Password:</label>
-          <input type="password" id="password" v-model="password" required>
+          <input type="password" id="password" v-model="password" class="form-control" required>
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" class="btn btn-primary btn-block">Login</button>
       </form>
     </div>
-  </template>
+  </div>
+</template>
+
+
 
     <script>
     import AuthenticationService from '../services/AuthenticationService';
@@ -43,37 +47,66 @@
 </script>
 
 <style>
+body, html {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+}
+
 .register-form {
-  max-width: 300px;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  max-width: 380px !important;
+  background-color: #fff;
+  padding: 30px 40px !important;
 }
 
 .form-group {
-  margin-bottom: 10px;
+  margin-bottom: 10px !important;
 }
 
 label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 5px !important;
 }
 
-input[type="email"],
-input[type="password"] {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.form-control {
+  border-radius: 20px !important;
+  background-color: rgba(143, 211, 244, 0.1) !important;
+  border: 1px solid rgba(143, 211, 244, 0.3) !important;
+  transition: all 0.3s ease !important;
+  font-size: 16px !important;
+  padding: 12px 20px !important;
+  width: 100% !important;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 5px rgba(143, 211, 244, 0.5) !important;
+  border-color: rgba(143, 211, 244, 0.5) !important;
 }
 
 button {
-  background-color: #007BFF;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  background-color: #007BFF !important;
+  color: white !important;
+  padding: 10px 15px !important;
+  border: none !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+}
+
+.btn-primary {
+  border-radius: 20px !important;
+  background-color: #007BFF !important;
+  border: none !important;
+  font-size: 16px !important;
+  padding: 12px 20px !important;
 }
 </style>
+
+
