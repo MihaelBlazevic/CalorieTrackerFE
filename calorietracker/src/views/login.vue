@@ -5,11 +5,23 @@
       <form @submit.prevent="login">
         <div class="form-group mb-3">
           <label for="email">Email:</label>
-          <input type="email" id="email" v-model="email" class="form-control" required>
+          <input
+            type="email"
+            id="email"
+            v-model="email"
+            class="form-control"
+            required
+          />
         </div>
         <div class="form-group mb-3">
           <label for="password">Password:</label>
-          <input type="password" id="password" v-model="password" class="form-control" required>
+          <input
+            type="password"
+            id="password"
+            v-model="password"
+            class="form-control"
+            required
+          />
         </div>
         <button type="submit" class="btn btn-primary btn-block">Login</button>
       </form>
@@ -17,16 +29,15 @@
   </div>
 </template>
 
+<script>
+import AuthenticationService from "../services/AuthenticationService";
 
-
-    <script>
-    import AuthenticationService from '../services/AuthenticationService';
-    export default {
-  name: 'Login',
+export default {
+  name: "Login",
   data() {
     return {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     };
   },
   methods: {
@@ -36,21 +47,28 @@
           email: this.email,
           password: this.password,
         });
+
         console.log(response.data);
+
+        // Check for successful login
+        if (response.status === 200) {
+          // Redirect to the home page
+          this.$router.push("/home"); // Change '/home' to the actual path of your home page
+        }
       } catch (error) {
-        console.error('Error', error);
+        console.error("Error", error);
       }
     },
   },
 };
-
 </script>
 
 <style>
-body, html {
+body,
+html {
   margin: 0 !important;
   padding: 0 !important;
-  font-family: 'Roboto', sans-serif !important;
+  font-family: "Roboto", sans-serif !important;
 }
 
 .login-container {
@@ -92,7 +110,7 @@ label {
 }
 
 button {
-  background-color: #007BFF !important;
+  background-color: #007bff !important;
   color: white !important;
   padding: 10px 15px !important;
   border: none !important;
@@ -102,7 +120,7 @@ button {
 
 .btn-primary {
   border-radius: 20px !important;
-  background-color: #007BFF !important;
+  background-color: #007bff !important;
   border: none !important;
   font-size: 16px !important;
   padding: 12px 20px !important;

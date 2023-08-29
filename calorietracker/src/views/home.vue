@@ -1,127 +1,113 @@
 <template>
-  <div class="item-list-page">
-    <router-link to="/home">
-      <button @click="goToHomePage" class="home-button">Back to Home</button>
-    </router-link>
-    <div class="squares-container">
-      <div class="square left-square">
-        <h2>Item List</h2>
-        <ul>
-          <li v-for="(item, index) in items" :key="index">{{ item }}</li>
-        </ul>
-        <div class="save-button-container">
-          <button @click="saveData" class="save-button">Save</button>
-        </div>
-      </div>
-      <div class="square right-square">
-        <h2>Ingredient List</h2>
-        <ul>
-          <li v-for="(ingredient, index) in ingredients" :key="index">
-            {{ ingredient.name }} - {{ ingredient.calories }} calories/100g
-          </li>
-        </ul>
-      </div>
+  <div class="home-container">
+    <div class="logout">
+      <button @click="logout">Log Out</button>
+    </div>
+    <div class="welcome-section">
+      <h2>Welcome, {{ name }}!</h2>
+    </div>
+    <div class="calories-box">
+      <h2>Today's Calories</h2>
+      <p>{{ todaysCalories }}</p>
+    </div>
+    <div class="actions">
+      <button @click="addCalories">Add Calories</button>
+      <button @click="createMeal">Create a Meal</button>
     </div>
   </div>
 </template>
 
 <script>
-// ... (your script remains unchanged)
+export default {
+  name: "Home",
+  data() {
+    return {
+      userName: "John Doe", // Placeholder. Replace with actual dynamic data
+      todaysCalories: 2000, // Placeholder. Replace with actual dynamic data
+    };
+  },
+  methods: {
+    addCalories() {
+      // Logic to add calories
+    },
+    createMeal() {
+      // Logic to create a meal
+    },
+    logout() {
+      // Logic to log out the user
+      // For example, clear any stored authentication tokens, reset user data, etc.
+      // Then route the user to the login page
+      console.log("Logged out");
+      this.$router.push("/login"); // Replace with the actual path to the login page
+    },
+  },
+};
 </script>
 
 <style>
 body,
 html {
-  height: 100%;
-  margin: 0;
-  font-family: Arial, sans-serif;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: "Roboto", sans-serif !important;
 }
 
-.item-list-page {
+.home-container {
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 40px 0;
-  width: 100%;
-  height: 100%;
-  background-color: #f7f7f7;
-}
-
-.squares-container {
-  display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-top: 40px;
-  width: 100%;
-  max-width: 1200px;
-  flex-grow: 1;
+  align-items: center;
+  background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  padding: 40px 0;
 }
 
-.square {
-  flex: 1;
-  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  padding: 30px;
-  margin: 0 10px;
-  position: relative;
-}
-
-.left-square {
-  background-color: #cce7ff;
-}
-
-.right-square {
-  background-color: #d9ffd8;
-}
-
-.home-button,
-.save-button {
-  padding: 12px 25px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s all ease-out;
-}
-
-.home-button {
-  background-color: #666;
-  color: #fff;
+.welcome-section {
   align-self: flex-start;
-  margin-top: 20px;
+  margin-left: 20px;
 }
 
-.home-button:hover {
-  background-color: #555;
+.calories-box {
+  width: 250px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
 }
 
-.save-button {
-  background-color: #007bff;
-  color: #fff;
-}
-
-.save-button:hover {
-  background-color: #0056b3;
-}
-
-.save-button-container {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-h2 {
+.calories-box h2 {
   font-size: 24px;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+.calories-box p {
+  font-size: 48px;
+  margin-bottom: 20px;
 }
 
-li {
-  padding: 8px 0;
+.actions {
+  display: flex;
+  gap: 20px;
+}
+
+button {
+  border-radius: 25px;
+  background-color: #6cd9c3;
+  border: none;
+  font-size: 16px;
+  padding: 15px 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 150px;
+  text-align: center;
+}
+
+button:hover {
+  background-color: #56bfa4;
 }
 </style>

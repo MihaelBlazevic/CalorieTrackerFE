@@ -5,19 +5,43 @@
       <form @submit.prevent="register">
         <div class="form-group">
           <label for="name">Name:</label>
-          <input type="text" id="name" v-model="name" required class="form-control">
+          <input
+            type="text"
+            id="name"
+            v-model="name"
+            required
+            class="form-control"
+          />
         </div>
         <div class="form-group">
           <label for="surname">Surname:</label>
-          <input type="text" id="surname" v-model="surname" required class="form-control">
+          <input
+            type="text"
+            id="surname"
+            v-model="surname"
+            required
+            class="form-control"
+          />
         </div>
         <div class="form-group">
           <label for="email">Email:</label>
-          <input type="email" id="email" v-model="email" required class="form-control">
+          <input
+            type="email"
+            id="email"
+            v-model="email"
+            required
+            class="form-control"
+          />
         </div>
         <div class="form-group">
           <label for="password">Password:</label>
-          <input type="password" id="password" v-model="password" required class="form-control">
+          <input
+            type="password"
+            id="password"
+            v-model="password"
+            required
+            class="form-control"
+          />
         </div>
         <button type="submit" class="btn-primary">Register</button>
       </form>
@@ -26,88 +50,94 @@
 </template>
 
 <script>
-import AuthenticationService from '../services/AuthenticationService';
+import AuthenticationService from "../services/AuthenticationService";
 export default {
-name: 'Register',
-data() {
-  return {
-    name: '',
-    surname:'',
-    email: '',
-    password: '',
-  };
-},
-methods: {
-  async register() {
-    try {
-      const response = await AuthenticationService.register({
-        name: this.name,
-        surname: this.surname,
-        email: this.email,
-        password: this.password,
-      });
-      console.log(response.data);
-    } catch (error) {
-      console.error('Error', error);
-    }
+  name: "Register",
+  data() {
+    return {
+      name: "",
+      surname: "",
+      email: "",
+      password: "",
+    };
   },
-},
+  methods: {
+    async register() {
+      try {
+        const response = await AuthenticationService.register({
+          name: this.name,
+          surname: this.surname,
+          email: this.email,
+          password: this.password,
+        });
+
+        console.log(response.data);
+
+        // Check if the registration was successful, then navigate to the 'home' route
+        if (response.status === 200) {
+          this.$router.push("/home"); // Replace 'home' with the actual name of the route
+        }
+      } catch (error) {
+        console.error("Error", error);
+      }
+    },
+  },
 };
 </script>
 
 <style>
 .register-container {
-height: 100vh;
-display: flex;
-justify-content: center;
-align-items: center;
-background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
 
 .register-form {
-max-width: 380px;
-background-color: #fff;
-padding: 30px 40px;
-border-radius: 20px;
-box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+  max-width: 380px;
+  background-color: #fff;
+  padding: 30px 40px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
 }
 
 .form-group {
-margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 label {
-display: block;
-margin-bottom: 5px;
+  display: block;
+  margin-bottom: 5px;
 }
 
 .form-control {
-border-radius: 20px;
-background-color: rgba(143, 211, 244, 0.1);
-border: 1px solid rgba(143, 211, 244, 0.3);
-transition: all 0.3s ease;
-font-size: 16px;
-padding: 12px 20px;
-width: 100%;
+  border-radius: 20px;
+  background-color: rgba(143, 211, 244, 0.1);
+  border: 1px solid rgba(143, 211, 244, 0.3);
+  transition: all 0.3s ease;
+  font-size: 16px;
+  padding: 12px 20px;
+  width: 100%;
 }
 
 .form-control:focus {
-box-shadow: 0 0 5px rgba(143, 211, 244, 0.5);
-border-color: rgba(143, 211, 244, 0.5);
+  box-shadow: 0 0 5px rgba(143, 211, 244, 0.5);
+  border-color: rgba(143, 211, 244, 0.5);
 }
 
 .btn-primary {
-border-radius: 20px;
-background-color: #007BFF;
-border: none;
-font-size: 16px;
-padding: 12px 20px;
-width: 100%;
-cursor: pointer;
-transition: all 0.3s ease;
+  border-radius: 20px;
+  background-color: #007bff;
+  border: none;
+  font-size: 16px;
+  padding: 12px 20px;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
-background-color: #0056b3;
+  background-color: #0056b3;
 }
 </style>
