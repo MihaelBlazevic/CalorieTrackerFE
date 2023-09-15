@@ -1,18 +1,15 @@
 <template>
-  <div class="home-container">
-    <div v-if="this.$store.getters.isLoggedIn" class="logout">
-      <button @click="logout">Log Out</button>
+  <div class="container-fluid home-container">
+    <div class="row welcome-section">
+      <div class="col">
+        <h2>Welcome, {{ user.name }}!</h2>
+      </div>
     </div>
-    <div class="welcome-section">
-      <h2>Welcome, {{ user.name }}!</h2>
-    </div>
-    <div class="calories-box">
-      <h2>Today's Calories</h2>
-      <p>{{ todaysCalories }}</p>
-    </div>
-    <div class="actions">
-      <router-link to="/calories" class="btn">Calories</router-link>
-      <router-link to="/recipe" class="btn">Recipe</router-link>
+    <div class="row">
+      <div class="col-md-4 offset-md-4 calories-box">
+        <h2>Today's Calories</h2>
+        <p>{{ todaysCalories }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -29,18 +26,6 @@ export default {
   created() {
     this.user = this.$store.getters.getUser;
   },
-  methods: {
-    addCalories() {
-      // Logic to add calories
-    },
-    createMeal() {
-      // Logic to create a meal
-    },
-    logout() {
-      this.$store.dispatch("logout");
-      this.$router.push("/login");
-    },
-  },
 };
 </script>
 
@@ -52,24 +37,22 @@ html {
   font-family: "Roboto", sans-serif !important;
 }
 
+.logout {
+  margin-top: 150px;
+}
+
 .home-container {
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
   padding: 40px 0;
 }
 
 .welcome-section {
-  align-self: flex-start;
-  margin-left: 20px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .calories-box {
-  width: 250px;
-  height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -88,11 +71,6 @@ html {
 .calories-box p {
   font-size: 48px;
   margin-bottom: 20px;
-}
-
-.actions {
-  display: flex;
-  gap: 20px;
 }
 
 button {

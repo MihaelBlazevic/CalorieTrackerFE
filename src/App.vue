@@ -1,7 +1,19 @@
 <template>
   <div>
+    <nav class="navbar">
+      <div class="navbar-brand">
+        <router-link to="/" class="navbar-item">
+          <h1>Calorie Tracker</h1>
+        </router-link>
+        <div class="navbar-options" v-if="this.$store.getters.isLoggedIn">
+          <router-link to="/home" class="navbar-item">Home</router-link>
+          <router-link to="/calories" class="navbar-item">Calories</router-link>
+          <router-link to="/recipe" class="navbar-item">Recipe</router-link>
+          <router-link to="/" @click="logout()">Log Out</router-link>
+        </div>
+      </div>
+    </nav>
     <div v-if="$route.path === '/'" class="app-container">
-      <h1>Calorie Tracker</h1>
       <p>
         Keep track of your daily calorie intake and maintain a healthy
         lifestyle.
@@ -23,6 +35,17 @@
     <!-- This will render the component for the current route -->
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+      this.$router.push("/");
+    },
+  },
+};
+</script>
 
 <style>
 .app-container {
@@ -63,5 +86,33 @@ p {
   color: #e57373;
   cursor: pointer;
   text-decoration: underline;
+}
+
+.navbar {
+  background-color: #2a3d45;
+  color: white;
+  padding: 10px 0;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.navbar-item {
+  color: white;
+  margin-right: 20px;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.navbar-item:hover {
+  text-decoration: underline;
+}
+
+.navbar-options {
+  display: flex;
+  align-items: center;
 }
 </style>

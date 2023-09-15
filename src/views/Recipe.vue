@@ -167,5 +167,3 @@ li:hover {
   margin: 25px; /* gives space on the left and right side of the button */
 }
 </style>
-
-  

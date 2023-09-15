@@ -4,8 +4,8 @@
       <div class="list-container left-list">
         <h2>Calories</h2>
         <ul>
-          <li v-for="meal in availableMeals" :key="meal.id">
-            {{ meal.name }} {{ meal.totalKcal }}
+          <li v-for="meal in selectedMeals" :key="meal.id">
+            {{ meal.name }} {{ meal.totalKcal }} kcal
           </li>
         </ul>
       </div>
@@ -16,9 +16,9 @@
       <div class="list-container right-list">
         <h2>Meals</h2>
         <ul>
-          <li v-for="meal in selectedMeals" :key="meal.id">
+          <li v-for="meal in availableMeals" :key="meal.id">
             <input type="checkbox" v-model="meal.isSelected" />
-            {{ meal.name }}
+            {{ meal.name }} {{ meal.totalKcal }} kcal
           </li>
         </ul>
       </div>
@@ -28,41 +28,41 @@
     </div>
   </div>
 </template>
-
 <script>
 import recipeService from "@/services/recipeService";
 
 export default {
   data() {
     return {
-      availableMeals: [], // This will hold the list of ingredients
-      selectedMeals: [], // This will hold the saved meals
+      availableMeals: [],
+      selectedMeals: [],
     };
   },
-  transferSelectedMeals() {
-    console.log("Transfer method called");
+  methods: {
+    async fetchMeals() {
+      let meals = await recipeService.getRecipes();
+      this.availableMeals = meals.map((meal) => {
+        meal.isSelected = false;
+        return meal;
+      });
+    },
+    transferSelectedMeals() {
+      // Filter out the meals that are selected
+      const mealsToTransfer = this.availableMeals.filter(
+        (meal) => meal.isSelected
+      );
 
-    // Filter out the meals that are selected
-    let mealsToTransfer = this.availableMeals.filter((meal) => meal.isSelected);
-    console.log("Meals to transfer:", mealsToTransfer);
+      // Add them to the selectedMeals list
+      this.selectedMeals.push(...mealsToTransfer);
 
-    // Add them to the selectedMeals list
-    this.selectedMeals.push(...mealsToTransfer);
-
-    // Remove them from the availableMeals list
-    this.availableMeals = this.availableMeals.filter(
-      (meal) => !meal.isSelected
-    );
-    console.log("Updated availableMeals:", this.availableMeals);
+      // Remove them from the availableMeals list
+      this.availableMeals = this.availableMeals.filter(
+        (meal) => !meal.isSelected
+      );
+    },
   },
-
   async created() {
-    // Fetching saved meals (recipes)
-    let meals = await recipeService.getRecipes();
-    this.selectedMeals = meals.map((meal) => {
-      meal.isSelected = false;
-      return meal;
-    });
+    await this.fetchMeals();
   },
 };
 </script>
@@ -123,13 +123,3 @@ li:hover {
   width: 100%;
 }
 </style>
-
-  
-  .btn-primary {
-    display: block;
-    margin-top: 10px;
-    text-align: center;
-    width: 100%;
-  }
-  </style>
-  
