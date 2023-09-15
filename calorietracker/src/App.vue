@@ -8,7 +8,7 @@
       </p>
 
       <!-- Login button -->
-      <router-link to="/login" class="btn btn-primary">Login</router-link>
+      <router-link to="/login" class="btn">Login</router-link>
 
       <!-- Register prompt and link -->
       <p class="register-prompt">
@@ -23,12 +23,6 @@
     <!-- This will render the component for the current route -->
   </div>
 </template>
-
-<script>
-export default {
-  name: "App",
-};
-</script>
 
 <style>
 .app-container {

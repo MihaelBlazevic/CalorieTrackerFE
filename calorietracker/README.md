@@ -1,4 +1,4 @@
-# calorietracker
+# ct-frontend
 
 ## Project setup
 ```

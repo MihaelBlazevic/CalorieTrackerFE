@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import AuthenticationService from "../services/AuthenticationService";
+import authService from "@/services/authService.js";
 
 export default {
   name: "Login",
@@ -43,20 +43,17 @@ export default {
   methods: {
     async login() {
       try {
-        const response = await AuthenticationService.login({
+        const response = await authService.login({
           email: this.email,
           password: this.password,
         });
 
-        console.log(response.data);
+        const { token, user } = response.data;
 
-        // Check for successful login
-        if (response.status === 200) {
-          // Redirect to the home page
-          this.$router.push("/home"); // Change '/home' to the actual path of your home page
-        }
+        this.$store.dispatch("login", { token, user });
+        this.$router.push({ name: "Home" });
       } catch (error) {
-        console.error("Error", error);
+        console.log(error);
       }
     },
   },
@@ -126,5 +123,3 @@ button {
   padding: 12px 20px !important;
 }
 </style>
-
-

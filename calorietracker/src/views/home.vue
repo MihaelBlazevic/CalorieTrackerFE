@@ -1,10 +1,10 @@
 <template>
   <div class="home-container">
-    <div class="logout">
+    <div v-if="this.$store.getters.isLoggedIn" class="logout">
       <button @click="logout">Log Out</button>
     </div>
     <div class="welcome-section">
-      <h2>Welcome, {{ name }}!</h2>
+      <h2>Welcome, {{ user.name }}!</h2>
     </div>
     <div class="calories-box">
       <h2>Today's Calories</h2>
@@ -22,9 +22,12 @@ export default {
   name: "Home",
   data() {
     return {
-      userName: "John Doe", // Placeholder. Replace with actual dynamic data
-      todaysCalories: 2000, // Placeholder. Replace with actual dynamic data
+      user: {},
+      todaysCalories: 2000,
     };
+  },
+  created() {
+    this.user = this.$store.getters.getUser;
   },
   methods: {
     addCalories() {
@@ -34,11 +37,8 @@ export default {
       // Logic to create a meal
     },
     logout() {
-      // Logic to log out the user
-      // For example, clear any stored authentication tokens, reset user data, etc.
-      // Then route the user to the login page
-      console.log("Logged out");
-      this.$router.push("/login"); // Replace with the actual path to the login page
+      this.$store.dispatch("logout");
+      this.$router.push("/login");
     },
   },
 };

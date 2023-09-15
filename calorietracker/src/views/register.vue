@@ -13,16 +13,7 @@
             class="form-control"
           />
         </div>
-        <div class="form-group">
-          <label for="surname">Surname:</label>
-          <input
-            type="text"
-            id="surname"
-            v-model="surname"
-            required
-            class="form-control"
-          />
-        </div>
+
         <div class="form-group">
           <label for="email">Email:</label>
           <input
@@ -50,13 +41,13 @@
 </template>
 
 <script>
-import AuthenticationService from "../services/AuthenticationService";
+import authService from "@/services/authService.js";
+
 export default {
   name: "Register",
   data() {
     return {
       name: "",
-      surname: "",
       email: "",
       password: "",
     };
@@ -64,21 +55,15 @@ export default {
   methods: {
     async register() {
       try {
-        const response = await AuthenticationService.register({
+        await authService.register({
           name: this.name,
-          surname: this.surname,
           email: this.email,
           password: this.password,
         });
 
-        console.log(response.data);
-
-        // Check if the registration was successful, then navigate to the 'home' route
-        if (response.status === 200) {
-          this.$router.push("/home"); // Replace 'home' with the actual name of the route
-        }
+        this.$router.push({ name: "Login" });
       } catch (error) {
-        console.error("Error", error);
+        console.error(error);
       }
     },
   },
@@ -104,6 +89,7 @@ export default {
 
 .form-group {
   margin-bottom: 15px;
+  margin-right: 15px;
 }
 
 label {
