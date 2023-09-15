@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import Register from "../views/Register.vue";
 import Login from "../views/Login.vue";
+import Recipe from "../views/Recipe.vue";
+import Calories from "../views/Calories.vue";
 
 const routes = [
   {
