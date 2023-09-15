@@ -19,6 +19,16 @@ const routes = [
     name: "Login",
     component: Login,
   },
+  {
+    path: "/recipe",
+    name: "Recipe",
+    component: Recipe,
+  },
+  {
+    path: "/calories",
+    name: "Calories",
+    component: Calories,
+  },
 ];
 
 const router = createRouter({

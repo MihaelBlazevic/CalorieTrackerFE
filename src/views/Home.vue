@@ -11,8 +11,8 @@
       <p>{{ todaysCalories }}</p>
     </div>
     <div class="actions">
-      <button @click="addCalories">Add Calories</button>
-      <button @click="createMeal">Create a Meal</button>
+      <router-link to="/calories" class="btn">Calories</router-link>
+      <router-link to="/recipe" class="btn">Recipe</router-link>
     </div>
   </div>
 </template>
