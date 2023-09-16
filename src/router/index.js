@@ -4,12 +4,18 @@ import Register from "../views/Register.vue";
 import Login from "../views/Login.vue";
 import Recipe from "../views/Recipe.vue";
 import Calories from "../views/Calories.vue";
+import Editor from "../views/Editor.vue";
 
 const routes = [
   {
     path: "/home",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/editor",
+    name: "Editor",
+    component: Editor,
   },
   {
     path: "/register",

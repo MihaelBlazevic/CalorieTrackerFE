@@ -7,6 +7,9 @@
         </router-link>
         <div class="navbar-options" v-if="this.$store.getters.isLoggedIn">
           <router-link to="/home" class="navbar-item">Home</router-link>
+          <router-link to="/editor" class="navbar-item"
+            >Meal Editor</router-link
+          >
           <router-link to="/calories" class="navbar-item">Calories</router-link>
           <router-link to="/recipe" class="navbar-item">Recipe</router-link>
           <router-link to="/" @click="logout()">Log Out</router-link>

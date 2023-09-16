@@ -16,7 +16,6 @@
         v-model="mealName"
       />
       <button class="btn-primary save-btn" @click="saveRecipe">Save</button>
-      <router-link to="/home" class="btn">Home</router-link>
     </div>
 
     <div class="list-section">
