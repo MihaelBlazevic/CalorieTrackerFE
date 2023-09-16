@@ -9,7 +9,9 @@
           </li>
         </ul>
       </div>
-      <button class="btn-primary save-btn">Save</button>
+      <button class="btn-primary save-btn" @click="saveDailyCalories">
+        Save
+      </button>
     </div>
 
     <div class="list-section">
@@ -30,6 +32,7 @@
 </template>
 <script>
 import recipeService from "@/services/recipeService";
+import dailyCaloriesService from "@/services/dailyCaloriesService.js";
 
 export default {
   data() {
@@ -39,6 +42,21 @@ export default {
     };
   },
   methods: {
+    async saveDailyCalories() {
+      // Calculate the total calories by summing the totalKcal of selected meals
+      const totalCalories = this.selectedMeals.reduce((total, meal) => {
+        return total + meal.totalKcal;
+      }, 0);
+
+      // Now, you can send the totalCalories in the request
+      const res = await dailyCaloriesService.createDailyCalories({
+        user: this.$store.getters.getUser._id,
+        recipes: this.selectedMeals,
+        dailyCalories: totalCalories, // Fill in the total calories here
+      });
+      console.log(res);
+    },
+
     async fetchMeals() {
       let meals = await recipeService.getRecipes();
       this.availableMeals = meals.map((meal) => {

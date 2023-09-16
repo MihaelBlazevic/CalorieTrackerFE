@@ -8,23 +8,32 @@
     <div class="row">
       <div class="col-md-4 offset-md-4 calories-box">
         <h2>Today's Calories</h2>
-        <p>{{ todaysCalories }}</p>
+        <p>{{ dailyCalories }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import dailyCaloriesService from "@/services/dailyCaloriesService.js";
 export default {
   name: "Home",
   data() {
     return {
       user: {},
-      todaysCalories: 2000,
+      dailyCalories: 0,
     };
   },
-  created() {
+  async created() {
     this.user = this.$store.getters.getUser;
+    console.log(this.user._id);
+    const dailyCalories = await dailyCaloriesService.getDailyCalories({
+      user: this.user._id,
+    });
+    console.log(dailyCalories);
+    if (dailyCalories) {
+      this.dailyCalories = dailyCalories["dailyCalories"];
+    }
   },
 };
 </script>
