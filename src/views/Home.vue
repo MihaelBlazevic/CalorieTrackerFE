@@ -26,13 +26,11 @@ export default {
   },
   async created() {
     this.user = this.$store.getters.getUser;
-    console.log(this.user._id);
-    const dailyCalories = await dailyCaloriesService.getDailyCalories({
-      user: this.user._id,
-    });
-    console.log(dailyCalories);
+    const dailyCalories = await dailyCaloriesService.getDailyCalories(
+      this.user._id
+    );
     if (dailyCalories) {
-      this.dailyCalories = dailyCalories["dailyCalories"];
+      this.dailyCalories = dailyCalories["data"]["dailyCalories"];
     }
   },
 };

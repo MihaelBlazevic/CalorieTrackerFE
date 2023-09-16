@@ -1,10 +1,8 @@
 import api from "@/services/api";
 
 export default {
-  getDailyCalories(data) {
-    return api()
-      .get("/dailycalories", data)
-      .then((response) => response.data);
+  getDailyCalories(id) {
+    return api().get(`/dailycalories/${id}`);
   },
 
   createDailyCalories(data) {
