@@ -10,4 +10,7 @@ export default {
   createRecipe(data) {
     return api().post("/recipes", data);
   },
+  deleteRecipe(_id) {
+    return api().delete(`/recipes/${_id}`);
+  },
 };
