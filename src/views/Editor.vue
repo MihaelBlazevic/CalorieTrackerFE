@@ -4,16 +4,14 @@
       <div class="list-container">
         <h2>Meals</h2>
         <ul>
-          <li v-for="meal in Meals" :key="meal.id">
+          <li v-for="meal in Meals" :key="meal._id">
             <input type="checkbox" v-model="meal.isSelected" />
             {{ meal.name }} {{ meal.totalKcal }} kcal
           </li>
         </ul>
       </div>
-      <button @click="performActionOnSelectedMeals" class="marg">Delete</button>
-
-      <button @click="performActionOnSelectedMeals" class="marg">
-        Favorite
+      <button @click="performActionOnSelectedMeals('delete')" class="marg">
+        Delete
       </button>
     </div>
   </div>
@@ -33,8 +31,32 @@ export default {
       let meals = await recipeService.getRecipes();
       this.Meals = meals.map((meal) => {
         meal.isSelected = false;
-        return meal;
+        return {
+          _id: meal._id,
+          name: meal.name,
+          ingredients: meal.ingredients,
+          totalKcal: meal.totalKcal,
+          isSelected: meal.isSelected,
+        };
       });
+    },
+
+    async deleteSelectedMeals() {
+      const selectedMealIds = this.Meals.filter((meal) => meal.isSelected).map(
+        (meal) => meal._id
+      );
+
+      for (let id of selectedMealIds) {
+        await recipeService.deleteRecipe(id);
+      }
+      await this.fetchMeals(); // Refresh the meals after deleting
+    },
+    performActionOnSelectedMeals(action) {
+      if (action === "delete") {
+        this.deleteSelectedMeals();
+      } else if (action === "favorite") {
+        // Handle the favorite logic here
+      }
     },
   },
   async created() {
