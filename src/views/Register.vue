@@ -71,40 +71,58 @@ export default {
 </script>
 
 <style>
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Lato", sans-serif;
+  background: #e8eff5;
+}
+
 .register-container {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  background: #e8eff5;
 }
 
 .register-form {
-  max-width: 380px;
-  background-color: #fff;
+  max-width: 400px;
+  background-color: #ffffff;
   padding: 30px 40px;
-  border-radius: 20px;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+h2 {
+  color: #333;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
 }
 
 .form-group {
   margin-bottom: 15px;
-  margin-right: 15px;
+  padding-right: 20px;
 }
 
 label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 7px;
+  color: #555;
+  font-weight: 600;
 }
 
 .form-control {
-  border-radius: 20px;
+  border-radius: 5px;
   background-color: rgba(143, 211, 244, 0.1);
   border: 1px solid rgba(143, 211, 244, 0.3);
   transition: all 0.3s ease;
   font-size: 16px;
   padding: 12px 20px;
   width: 100%;
+  color: #333;
 }
 
 .form-control:focus {
@@ -112,18 +130,20 @@ label {
   border-color: rgba(143, 211, 244, 0.5);
 }
 
-.btn-primary {
-  border-radius: 20px;
-  background-color: #007bff;
+button.btn-primary {
   border: none;
-  font-size: 16px;
-  padding: 12px 20px;
-  width: 100%;
+  border-radius: 5px;
+  padding: 12px 25px;
+  font-size: 18px;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  background-color: #6f87a6;
+  color: #fff;
+  transition: background-color 0.3s ease;
+  letter-spacing: 1px;
 }
 
 .btn-primary:hover {
-  background-color: #0056b3;
+  background-color: #5a6f8a;
 }
 </style>

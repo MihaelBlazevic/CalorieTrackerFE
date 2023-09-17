@@ -65,11 +65,6 @@ export default {
 
       // Add them to the selectedIngredients array
       this.selectedIngredients.push(...toTransfer);
-
-      // Remove them from the availableIngredients array
-      this.availableIngredients = this.availableIngredients.filter(
-        (ingredient) => !ingredient.isSelected
-      );
     },
     async saveRecipe() {
       // Calculate total calories
@@ -100,23 +95,70 @@ export default {
 </script>
 
 <style scoped>
+/* Add the import for the font at the start */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");
+
+/* Use the imported font throughout the component */
+.recipe-container,
+.list-container,
+h2,
+ul,
+li {
+  font-family: "Open Sans", sans-serif;
+}
+
+/* Enhancing the list items */
+li {
+  margin-bottom: 10px;
+  padding: 10px 15px; /* Increased padding */
+  background-color: #e9ecf1;
+  border: 2px solid transparent; /* Add a transparent border to maintain size on hover */
+  border-radius: 5px;
+  transition: background 0.3s ease, border-color 0.3s ease; /* Transition for the border color too */
+  font-weight: 600; /* Make the text slightly bolder */
+}
+
+li:hover {
+  background-color: #d1d4da;
+  border-color: #6f87a6; /* Adding a border color on hover */
+}
+
+/* Text enhancement */
+h2 {
+  font-size: 22px; /* Slightly bigger header */
+  margin-bottom: 20px;
+  color: #333;
+  letter-spacing: 1.5px;
+  font-weight: 600; /* Bolder header */
+}
+
+.text-input {
+  /* ... (rest of the properties) ... */
+  font-size: 18px; /* Bigger font for input */
+}
+
+.btn-primary {
+  /* ... (rest of the properties) ... */
+  letter-spacing: 1.5px; /* Slightly increased letter spacing */
+}
+
 .recipe-container {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  background: #eaf6f6; /* Light teal background */
   height: 100vh;
 }
 
 .list-section {
-  width: 30%; /* Adjust as needed */
+  width: 45%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .list-container {
-  width: 100%; /* Taking the full width of the .list-section */
+  width: 100%;
   background-color: #f7f9fc;
   padding: 20px;
   border-radius: 10px;
@@ -126,6 +168,8 @@ export default {
 h2 {
   font-size: 20px;
   margin-bottom: 20px;
+  color: #333;
+  letter-spacing: 1px;
 }
 
 ul {
@@ -140,29 +184,55 @@ li {
   padding: 5px 10px;
   background-color: #e9ecf1;
   border: 1px solid #d1d4da;
-  border-radius: 15px;
-  transition: all 0.3s ease;
+  border-radius: 5px;
+  transition: background 0.3s ease;
 }
 
 li:hover {
-  background-color: #cfd5df;
+  background-color: #d1d4da;
+  border: 1px solid #c2c7d0;
 }
 
 .btn-primary {
-  display: block;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #6f87a6;
+  color: #fff;
+  transition: background-color 0.3s ease;
   margin-top: 10px;
   text-align: center;
-  width: 100%;
+  letter-spacing: 1px;
 }
+
+.btn-primary:hover {
+  background-color: #5a6f8a;
+}
+
 .text-input {
-  margin-top: 25px;
+  margin-top: 20px;
+  padding: 8px 12px;
+  border: 1px solid #d1d4da;
+  border-radius: 5px;
   width: 100%;
-  padding: 10px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  margin-bottom: 10px; /* Space between input and the Save button */
+  font-size: 16px;
+  background-color: #f7f9fc;
+  transition: border 0.3s ease;
 }
-.home-button {
-  margin: 25px; /* gives space on the left and right side of the button */
+
+.text-input:focus {
+  border: 1px solid #6f87a6;
+  outline: none;
+}
+
+.left-list {
+  margin-right: 2%;
+}
+
+.right-list {
+  margin-left: 2%;
 }
 </style>

@@ -1,15 +1,16 @@
 <template>
-  <div class="container-fluid home-container">
-    <div class="row welcome-section">
-      <div class="col">
-        <h2>Welcome, {{ user.name }}!</h2>
-      </div>
+  <div class="home-container">
+    <div class="welcome-section">
+      <h2>Welcome, {{ user.name }}!</h2>
     </div>
-    <div class="row">
-      <div class="col-md-4 offset-md-4 calories-box">
-        <h2>Today's Calories</h2>
-        <p>{{ dailyCalories }}</p>
-      </div>
+    <div class="calories-box">
+      <h2>Today's Calories</h2>
+      <p :class="{ 'calories-limit': hasReachedCalorieLimit }">
+        {{ dailyCalories }}
+      </p>
+      <p v-if="hasReachedCalorieLimit" class="calories-message">
+        You have reached the appropriate calorie intake for today, Good job!
+      </p>
     </div>
   </div>
 </template>
@@ -29,9 +30,14 @@ export default {
     const dailyCalories = await dailyCaloriesService.getDailyCalories(
       this.user._id
     );
-    if (dailyCalories) {
-      this.dailyCalories = dailyCalories["data"]["dailyCalories"];
+    if (dailyCalories && dailyCalories.data) {
+      this.dailyCalories = dailyCalories.data.dailyCalories || 0;
     }
+  },
+  computed: {
+    hasReachedCalorieLimit() {
+      return this.dailyCalories >= 2000;
+    },
   },
 };
 </script>
@@ -41,22 +47,23 @@ body,
 html {
   margin: 0 !important;
   padding: 0 !important;
-  font-family: "Roboto", sans-serif !important;
-}
-
-.logout {
-  margin-top: 150px;
+  font-family: "Lato", sans-serif !important;
+  background: #e8eff5;
 }
 
 .home-container {
   height: 100vh;
-  background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  background: #eaf6f6; /* Light teal background */
   padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .welcome-section {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
+  color: #333;
 }
 
 .calories-box {
@@ -64,35 +71,50 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: white;
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
 }
 
 .calories-box h2 {
-  font-size: 24px;
+  font-size: 22px;
   margin-bottom: 20px;
+  color: #6f87a6;
 }
 
 .calories-box p {
-  font-size: 48px;
-  margin-bottom: 20px;
+  font-size: 36px;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.calories-limit {
+  color: #6f87a6;
+}
+
+.calories-message {
+  font-size: 8px; /* Reduced font size for the calorie message */
+  color: #6f87a6; /* Match the color with the scheme */
+  text-align: center;
+  margin-top: 20px;
 }
 
 button {
-  border-radius: 25px;
-  background-color: #6cd9c3;
   border: none;
-  font-size: 16px;
-  padding: 15px 25px;
+  border-radius: 5px;
+  padding: 12px 25px;
+  font-size: 18px;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  width: 150px;
-  text-align: center;
+  background-color: #6f87a6; /* Button color to match with the scheme */
+  color: #fff;
+  transition: background-color 0.3s ease;
+  letter-spacing: 1px;
 }
 
 button:hover {
-  background-color: #56bfa4;
+  background-color: #5a6f8a; /* Slightly darker shade for the hover state */
 }
 </style>

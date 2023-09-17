@@ -11,7 +11,7 @@
         </ul>
       </div>
       <button @click="performActionOnSelectedMeals('delete')" class="marg">
-        Delete
+        DELETE
       </button>
     </div>
   </div>
@@ -66,10 +66,14 @@ export default {
 </script>
 
 <style scoped>
-/* Removed .right-list CSS */
-.marg {
-  margin-top: 25px;
-  margin-bottom: 25px;
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");
+
+.recipe-container,
+.list-container,
+h2,
+ul,
+li {
+  font-family: "Open Sans", sans-serif;
 }
 
 .recipe-container {
@@ -77,19 +81,19 @@ export default {
   justify-content: center; /* Center the content horizontally */
   align-items: center; /* Center the content vertically */
   padding: 20px;
-  background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  background: #eaf6f6; /* Light teal background for consistency */
   height: 100vh;
 }
 
 .list-section {
-  width: 30%; /* Adjust as needed */
+  width: 45%; /* Given the larger viewport, adjusted the width */
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .list-container {
-  width: 100%; /* Taking the full width of the .list-section */
+  width: 100%;
   background-color: #f7f9fc;
   padding: 20px;
   border-radius: 10px;
@@ -97,34 +101,76 @@ export default {
 }
 
 h2 {
-  font-size: 20px;
+  font-size: 24px; /* Slightly bigger for more emphasis */
   margin-bottom: 20px;
+  color: #333;
+  letter-spacing: 1.5px;
+  font-weight: 600;
 }
 
 ul {
   list-style-type: none;
-  padding: 0;
+  padding-left: 0;
   max-height: 250px;
   overflow-y: auto;
 }
 
 li {
+  display: flex; /* Display checkbox and text in line */
+  align-items: center; /* Vertically align checkbox and text */
   margin-bottom: 10px;
-  padding: 5px 10px;
+  padding: 10px 15px;
   background-color: #e9ecf1;
-  border: 1px solid #d1d4da;
-  border-radius: 15px;
-  transition: all 0.3s ease;
+  border: 2px solid transparent; /* Transparent border to keep sizes consistent */
+  border-radius: 5px;
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 li:hover {
-  background-color: #cfd5df;
+  background-color: #d1d4da;
+  border-color: #6f87a6;
 }
 
-.btn-primary {
-  display: block;
+.btn-primary,
+.marg {
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #6f87a6;
+  color: #fff;
+  transition: background-color 0.3s ease;
   margin-top: 10px;
   text-align: center;
-  width: 100%;
+  letter-spacing: 1px;
+}
+
+./* Adjust the primary button */
+.btn-primary, .marg {
+  display: inline-block; /* To better control spacing and layout */
+  border: none;
+  border-radius: 25px;
+  padding: 12px 24px; /* Slightly bigger for better touch target */
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #6f87a6;
+  color: #fff;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Added transform */
+  text-align: center;
+  letter-spacing: 1.5px;
+  margin-top: 20px;
+  text-transform: uppercase; /* Make text uppercase for visual distinction */
+}
+
+.btn-primary:hover,
+.marg:hover {
+  background-color: #5a6f8a;
+  transform: scale(1.05); /* Slight scale on hover for feedback */
+}
+input[type="checkbox"] {
+  margin-right: 10px; /* Add some space between checkbox and label */
 }
 </style>

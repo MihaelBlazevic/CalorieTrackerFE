@@ -12,7 +12,9 @@
           >
           <router-link to="/calories" class="navbar-item">Calories</router-link>
           <router-link to="/recipe" class="navbar-item">Recipe</router-link>
-          <router-link to="/" @click="logout()">Log Out</router-link>
+          <router-link to="/" @click="logout()" class="navbar-item"
+            >Log Out</router-link
+          >
         </div>
       </div>
     </nav>
@@ -21,11 +23,7 @@
         Keep track of your daily calorie intake and maintain a healthy
         lifestyle.
       </p>
-
-      <!-- Login button -->
       <router-link to="/login" class="btn">Login</router-link>
-
-      <!-- Register prompt and link -->
       <p class="register-prompt">
         Don't have an account?
         <router-link to="/register" class="register-link"
@@ -35,7 +33,6 @@
     </div>
 
     <router-view />
-    <!-- This will render the component for the current route -->
   </div>
 </template>
 
@@ -51,71 +48,105 @@ export default {
 </script>
 
 <style>
-.app-container {
-  background-color: #2a3d45;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-family: "Raleway", sans-serif;
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Lato", sans-serif;
+  background: #e8eff5;
 }
 
-h1 {
-  font-size: 2.5em;
-  margin-bottom: 10px;
-}
-
-p {
-  margin-bottom: 20px;
-}
-
-.btn {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-bottom: 10px;
-}
-
-.register-prompt {
-  margin-top: 15px;
-}
-
-.register-link {
-  color: #e57373;
-  cursor: pointer;
-  text-decoration: underline;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .navbar {
-  background-color: #2a3d45;
+  background-color: #bdc8d0;
   color: white;
   padding: 10px 0;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .navbar-brand {
   display: flex;
   align-items: center;
-  margin-left: 20px;
 }
 
 .navbar-item {
   color: white;
-  margin-right: 20px;
+  margin-left: 20px;
   text-decoration: none;
+  font-weight: 600;
   font-size: 1.2em;
+  transition: 0.2s ease;
+  letter-spacing: 0.8px;
 }
 
 .navbar-item:hover {
   text-decoration: underline;
+  color: #e8eff5;
 }
 
 .navbar-options {
   display: flex;
   align-items: center;
+}
+
+h1 {
+  font-weight: 700;
+  color: #333;
+  letter-spacing: 1px;
+}
+
+.app-container {
+  height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  text-align: center;
+}
+
+p {
+  color: #666;
+  max-width: 500px;
+  margin-bottom: 30px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.btn {
+  border: none;
+  border-radius: 5px;
+  padding: 12px 25px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #6f87a6;
+  color: #fff;
+  transition: background-color 0.3s ease;
+  letter-spacing: 1px;
+}
+
+.btn:hover {
+  background-color: #5a6f8a;
+}
+
+.register-prompt {
+  margin-top: 20px;
+  color: #666;
+}
+
+.register-link {
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
 }
 </style>
