@@ -3,7 +3,7 @@ import store from "../store";
 
 export default () => {
   return axios.create({
-    baseURL: "http://localhost:4000",
+    baseURL: "https://calorietrackerbe.onrender.com",
     headers: {
       Authorization: `Bearer ${store.getters.isLoggedIn}`,
     },
